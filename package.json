@@ -1,0 +1,23 @@
+{
+  "name": "liri-node-app",
+  "version": "1.0.0",
+  "description": "Node HW",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamesmarkotic/liri-node-app.git"
+  },
+  "keywords": [
+    "node",
+    "homework"
+  ],
+  "author": "JDM",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jamesmarkotic/liri-node-app/issues"
+  },
+  "homepage": "https://github.com/jamesmarkotic/liri-node-app#readme"
+}
