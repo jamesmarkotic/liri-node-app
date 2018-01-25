@@ -74,15 +74,25 @@ var userInput = process.argv.splice(3);
 // OMBD function
 
 function omdbGo () {
-  var queryURL = "https://www.omdbapi.com/?t=" + userInput + "&y=&plot=short&apikey=6e9360ad"
-  // console.log(userInput);
+  var queryURL = "https://www.omdbapi.com/?t=" + userInput + "&y=&plot=short&limit=1&apikey=6e9360ad"
+
   request(queryURL, function(error, response, body) {
-  
+
     // If the request was successful...
     if (!error && response.statusCode === 200) {
-
+      var json = JSON.parse(body);
       // Then log the body from the site!
-      console.log(body);
+      // console.log(json);
+      console.log('------------------');
+      console.log('Movie title: ' + json.Title);
+      console.log('Movie year: ' + json.Year);
+      console.log('IMDB rating: ' + json.imdbRating);
+      console.log('Rotten Tomatoes rating: ' + json.Ratings[1].Value);
+      console.log('Countries released: ' + json.Country);
+      console.log('Languages: ' + json.Language);
+      console.log('Plot: ' + json.Plot);
+      console.log('Actors: ' + json.Actors);
+      console.log('------------------');
     }
   });
 }
