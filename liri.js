@@ -7,40 +7,40 @@ var userInput = process.argv.splice(3);
 
 // Spotify function
 
-function spotifyGo () {
-  var secretSpot = require('./spot.js');
-  var Spotify = require('node-spotify-api');
-  var sptKeys = secretSpot.spotKeys;
-
-  var spotify = new Spotify({
-    id: secretSpot.id,
-    secret: secretSpot.secret
-  });
-
-  spotify
-    .search({ type: 'track', query: userInput, limit: 1 })
-    .then(function(derp) {
-      console.log('----------------------------------');
-      console.log('Artist: ' + derp.tracks.items[0].artists[0].name);
-      console.log('Song name: ' + derp.tracks.items[0].name);
-      console.log('Preview URL: ' + derp.tracks.items[0].preview_url);
-      console.log('Album name: ' + derp.tracks.items[0].album.name);
-      console.log('----------------------------------');
-    })
-    .catch(function(err) {
-      spotify
-        .search({ type: 'track', query: 'ace of base', limit: 1 })
-        .then(function(derp) {
-          console.log('----------------------------------');
-          console.log('Artist: ' + derp.tracks.items[0].artists[0].name);
-          console.log('Song name: ' + derp.tracks.items[0].name);
-          console.log('Preview URL: ' + derp.tracks.items[0].preview_url);
-          console.log('Album name: ' + derp.tracks.items[0].album.name);
-          console.log('----------------------------------');
-        })
-      });
-  }
-spotifyGo();
+// function spotifyGo () {
+//   var secretSpot = require('./spot.js');
+//   var Spotify = require('node-spotify-api');
+//   var sptKeys = secretSpot.spotKeys;
+//
+//   var spotify = new Spotify({
+//     id: secretSpot.id,
+//     secret: secretSpot.secret
+//   });
+//
+//   spotify
+//     .search({ type: 'track', query: userInput, limit: 1 })
+//     .then(function(derp) {
+//       console.log('----------------------------------');
+//       console.log('Artist: ' + derp.tracks.items[0].artists[0].name);
+//       console.log('Song name: ' + derp.tracks.items[0].name);
+//       console.log('Preview URL: ' + derp.tracks.items[0].preview_url);
+//       console.log('Album name: ' + derp.tracks.items[0].album.name);
+//       console.log('----------------------------------');
+//     })
+//     .catch(function(err) {
+//       spotify
+//         .search({ type: 'track', query: 'ace of base', limit: 1 })
+//         .then(function(derp) {
+//           console.log('----------------------------------');
+//           console.log('Artist: ' + derp.tracks.items[0].artists[0].name);
+//           console.log('Song name: ' + derp.tracks.items[0].name);
+//           console.log('Preview URL: ' + derp.tracks.items[0].preview_url);
+//           console.log('Album name: ' + derp.tracks.items[0].album.name);
+//           console.log('----------------------------------');
+//         })
+//       });
+//   }
+// spotifyGo();
 
 
 
@@ -73,9 +73,20 @@ spotifyGo();
 
 // OMBD function
 
-// function omdbGo () {
-//   '6e9360ad'
-// }
+function omdbGo () {
+  var queryURL = "https://www.omdbapi.com/?t=" + userInput + "&y=&plot=short&apikey=6e9360ad"
+  // console.log(userInput);
+  request(queryURL, function(error, response, body) {
+  
+    // If the request was successful...
+    if (!error && response.statusCode === 200) {
+
+      // Then log the body from the site!
+      console.log(body);
+    }
+  });
+}
+omdbGo();
 
 
 
