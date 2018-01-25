@@ -7,60 +7,69 @@ var userInput = process.argv.splice(3);
 
 // Spotify function
 
-// function spotifyGo () {
-//   var secretSpot = require('./spot.js');
-//   var Spotify = require('node-spotify-api');
-//   var sptKeys = secretSpot.spotKeys;
-//
-//   var spotify = new Spotify({
-//     id: secretSpot.id,
-//     secret: secretSpot.secret
-//   });
-//
-//   spotify
-//     .search({ type: 'track', query: userInput, limit: 1 })
-//     .then(function(derp) {
-//       console.log('----------------------------------');
-//       console.log('Artist: ' + derp.tracks.items[0].artists[0].name);
-//       console.log('Song name: ' + derp.tracks.items[0].name);
-//       console.log('Preview URL: ' + derp.tracks.items[0].preview_url);
-//       console.log('Album name: ' + derp.tracks.items[0].album.name);
-//       console.log('----------------------------------');
-//     })
-//     .catch(function(err) {
-//       console.log(err);
-//     });
-// }
-// spotifyGo();
+function spotifyGo () {
+  var secretSpot = require('./spot.js');
+  var Spotify = require('node-spotify-api');
+  var sptKeys = secretSpot.spotKeys;
+
+  var spotify = new Spotify({
+    id: secretSpot.id,
+    secret: secretSpot.secret
+  });
+
+  spotify
+    .search({ type: 'track', query: userInput, limit: 1 })
+    .then(function(derp) {
+      console.log('----------------------------------');
+      console.log('Artist: ' + derp.tracks.items[0].artists[0].name);
+      console.log('Song name: ' + derp.tracks.items[0].name);
+      console.log('Preview URL: ' + derp.tracks.items[0].preview_url);
+      console.log('Album name: ' + derp.tracks.items[0].album.name);
+      console.log('----------------------------------');
+    })
+    .catch(function(err) {
+      spotify
+        .search({ type: 'track', query: 'ace of base', limit: 1 })
+        .then(function(derp) {
+          console.log('----------------------------------');
+          console.log('Artist: ' + derp.tracks.items[0].artists[0].name);
+          console.log('Song name: ' + derp.tracks.items[0].name);
+          console.log('Preview URL: ' + derp.tracks.items[0].preview_url);
+          console.log('Album name: ' + derp.tracks.items[0].album.name);
+          console.log('----------------------------------');
+        })
+      });
+  }
+spotifyGo();
 
 
 
 // Twitter function
 
-function twitterGo () {
-  var Twitter = require('twitter');
-  var keys = require('./keys.js');
-
-  var client = new Twitter({
-    consumer_key: keys.consumer_key,
-    consumer_secret: keys.consumer_secret,
-    access_token_key: keys.access_token_key,
-    access_token_secret: keys.access_token_secret
-  });
-
-  var params = {screen_name: 'jdmarkotic'};
-  client.get('statuses/user_timeline', params, function(error, tweets, derp) {
-    if (!error) {
-      for (i = 0; i < tweets.length; i ++) {
-        console.log('--------------------------');
-        console.log(tweets[i].text);
-        console.log("Tweet created at: " + tweets[i].created_at);
-        console.log('--------------------------');
-      }
-    }
-  });
-}
-twitterGo();
+// function twitterGo () {
+//   var Twitter = require('twitter');
+//   var keys = require('./keys.js');
+//
+//   var client = new Twitter({
+//     consumer_key: keys.consumer_key,
+//     consumer_secret: keys.consumer_secret,
+//     access_token_key: keys.access_token_key,
+//     access_token_secret: keys.access_token_secret
+//   });
+//
+//   var params = {screen_name: 'jdmarkotic'};
+//   client.get('statuses/user_timeline', params, function(error, tweets, derp) {
+//     if (!error) {
+//       for (i = 0; i < tweets.length; i ++) {
+//         console.log('--------------------------');
+//         console.log(tweets[i].text);
+//         console.log("Tweet created at: " + tweets[i].created_at);
+//         console.log('--------------------------');
+//       }
+//     }
+//   });
+// }
+// twitterGo();
 
 // OMBD function
 
