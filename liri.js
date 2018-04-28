@@ -96,7 +96,7 @@ function omdbGo () {
     }
 
     // Was trying to find a crafty way of using the error to display My Nobody
-    if (error) {
+    else {
       console.log('------------------');
       console.log('Movie title: ' + 'Mr. Nobody');
       console.log('Movie year: ' + '2009');
